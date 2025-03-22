@@ -1,5 +1,11 @@
 ## def-cache
 
+<p align="center">
+  <a href="https://pypi.org/project/def-cache"><img alt="PyPI Version" src="https://img.shields.io/pypi/v/def-cache" /></a>
+  <a href="https://pypi.org/project/def-cache"><img alt="Python Versions" src="https://img.shields.io/pypi/pyversions/def-cache" /></a>
+<br/>
+</p>
+
 `def-cache` is a python package that can be used as a method decorator to case their results.
 
 Even though it can be used for any python method, it's aim is to be used in computational heavy methods,
