@@ -4,7 +4,7 @@ build-backend = "pdm.backend"
 
 [project]
 name = "def-cache"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Mihalis Papakonstantinou", email="mihalispapak@gmail.com" },
 ]
@@ -37,5 +37,5 @@ classifiers = [
 license-files = ["LICENSE"]
 
 [project.urls]
-Homepage = "https://github.com/mihalispap/method-cache"
-Issues = "https://github.com/mihalispap/method-cache/issues"
+Homepage = "https://github.com/mihalispap/def-cache"
+Issues = "https://github.com/mihalispap/def-cache/issues"
