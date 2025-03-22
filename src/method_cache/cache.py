@@ -2,15 +2,17 @@ import hashlib
 from copy import copy
 from typing import Optional
 
+from .model import models
+
 ACCEPTABLE_BACKENDS = ['fs']
 
 
-def _get_cache_entry():
+def _get_cache_entry() -> Optional[models.CacheEntry]:
     return None
 
 
-def _create_cache_entry():
-    return None
+def _create_cache_entry() -> models.CacheEntry:
+    return models.CacheEntry()
 
 
 def cache(
