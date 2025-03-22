@@ -43,7 +43,7 @@ print(add(1, 2))
 print(add(1, 2))
 ```
 
-Example are also present in the (examples)[/examples] directory.
+Example are also present in the [examples](/examples) directory.
 
 ### Future Extensions
 
