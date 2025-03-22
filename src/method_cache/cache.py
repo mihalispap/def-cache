@@ -22,7 +22,7 @@ def _get_cache_entry(
 ) -> Optional[models.CacheEntry]:
     if backend == 'fs':
         filepath = os.path.join(storage, cache_entry_id)
-        file_timestamp = fs.get_file_timestamp(filepath)
+        file_timestamp = fs.get_file_timestamp(filepath) if fs.file_exists(filepath) else None
 
         if not file_timestamp or (time.time() - file_timestamp > ttl):
             fs.safe_remove_file(filepath)
