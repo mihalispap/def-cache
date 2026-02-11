@@ -65,13 +65,15 @@ def cache(
         ttl: int = -1,
         backend: str = 'fs',
         storage: Optional[str] = 'cache',
-        ignore: Optional[List[int]] = None,
+        ignore_by_index: Optional[List[int]] = None,
+        ignore_by_name: Optional[List[str]] = None,
 ):
     """
     :param ttl: Time-to-live for cache entries
     :param backend: Backend to used for storage. Default: fs (file-system)
     :param storage: Storage to be used. If fs is selected as backend this will be the file-system directory
-    :param ignore: Parameters to ignore when caching (starting from 0)
+    :param ignore_by_index: Parameters to ignore when caching (starting from 0)
+    :param ignore_by_name: Parameter names to ignore when caching
     :return: Return value of cached method
     """
 
@@ -81,9 +83,17 @@ def cache(
                     backend in ACCEPTABLE_BACKENDS
             ), f'cache decorator expects one of: {ACCEPTABLE_BACKENDS} as backends'
 
+            if ignore_by_name:
+                assert (
+                        ignore_by_name and kwargs != {}
+                ), f'`ignore_by_name` should be used with kwargs'
+
             caller = f'{function.__module__}.{function.__name__}'
             params = copy(kwargs)
-            params['args'] = [arg for idx, arg in enumerate(args) if idx not in (ignore or [])]
+            params['args'] = [arg for idx, arg in enumerate(args) if idx not in (ignore_by_index or [])]
+
+            if ignore_by_name:
+                [params.pop(p) for p in ignore_by_name]
 
             if backend == 'fs':
                 fs.create_directory(storage)
