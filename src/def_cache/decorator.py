@@ -6,7 +6,7 @@ import sys
 import datetime
 
 from copy import copy
-from typing import Optional
+from typing import Optional, List
 
 from .model import models
 from .utils import fs
@@ -65,11 +65,13 @@ def cache(
         ttl: int = -1,
         backend: str = 'fs',
         storage: Optional[str] = 'cache',
+        ignore: Optional[List[int]] = None,
 ):
     """
     :param ttl: Time-to-live for cache entries
     :param backend: Backend to used for storage. Default: fs (file-system)
     :param storage: Storage to be used. If fs is selected as backend this will be the file-system directory
+    :param ignore: Parameters to ignore when caching (starting from 0)
     :return: Return value of cached method
     """
 
@@ -81,7 +83,7 @@ def cache(
 
             caller = f'{function.__module__}.{function.__name__}'
             params = copy(kwargs)
-            params['args'] = args
+            params['args'] = [arg for idx, arg in enumerate(args) if idx not in ignore or []]
 
             if backend == 'fs':
                 fs.create_directory(storage)
