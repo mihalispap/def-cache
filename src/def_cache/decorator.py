@@ -83,7 +83,7 @@ def cache(
 
             caller = f'{function.__module__}.{function.__name__}'
             params = copy(kwargs)
-            params['args'] = [arg for idx, arg in enumerate(args) if idx not in ignore or []]
+            params['args'] = [arg for idx, arg in enumerate(args) if idx not in (ignore or [])]
 
             if backend == 'fs':
                 fs.create_directory(storage)
